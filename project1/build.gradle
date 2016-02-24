@@ -1,0 +1,7 @@
+apply plugin:'java'
+apply plugin:"eclipse"
+
+dependencies {
+	compile "$group:project2:$version"
+	compile "$group:project4:$version"
+}

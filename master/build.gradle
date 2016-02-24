@@ -1,0 +1,18 @@
+def allPros = getSubprojects()
+subprojects {
+	apply plugin:'maven'
+	group = "org.acme"
+	version = "1.0-SNAPSHOT"
+	
+	repositories {
+		mavenLocal()
+	}
+	
+	configurations.all {
+		resolutionStrategy.dependencySubstitution { sub ->
+			allPros.each { proj ->
+				substitute module("${proj.group}:${proj.name}:${proj.version}") with sub.project(proj.path)	
+			}
+		}
+	}
+}

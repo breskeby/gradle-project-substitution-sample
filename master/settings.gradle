@@ -1,0 +1,12 @@
+File[] subprojects = file("..").listFiles(new FileFilter() {
+    @Override
+    public boolean accept(File file) {
+        return file.isDirectory() && 
+ 		 	   !file.name.equals("master") && 
+			   new File(file, "build.gradle").exists();
+    }
+});
+
+subprojects.each { suproject ->
+	includeFlat suproject.name
+}
